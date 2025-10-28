@@ -26,17 +26,10 @@ img {
 }
 /* Sikrer at bilder går utenfor sin beholder */
 
-ul,
-ol {
+ul {
   list-style: none;
 }
 /* Fjerner punktmerking på alle lister*/
-
-h1 {
-  text-align: center;
-  font-size: 1.8rem;
-  color: lightgrey;
-}
 
 p {
   font-weight: normal;
@@ -89,6 +82,11 @@ p {
   border: 0px solid red;
 }
 
+.section-rows.fixed-height {
+  height: 140px;
+  flex: 0 0 auto;
+  padding-top: 8px;
+}
 .sub-section {
   flex: 1;
   display: flex;
@@ -99,6 +97,7 @@ p {
   border: 0px solid brown;
 }
 
+/* UNUSED */
 .sub-section.infotext {
   display: flex;
   flex: 1;
@@ -123,12 +122,14 @@ p {
   color: black;
 }
 
+/* UNUSED */
 .button-progress.disabled {
   background-color: gray;
   cursor: not-allowed;
   visibility: hidden;
 }
 
+/* UNUSED */
 .button-round {
   width: 40px;
   height: 40px;
@@ -144,12 +145,14 @@ p {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* UNUSED */
 .button-round.selected {
   background-color: blue;
   font-size: 1rem;
   color: white;
 }
 
+/* UNUSED */
 .button-optiontextold {
   background-color: white;
   height: 40px;
@@ -175,6 +178,7 @@ p {
   border: 2px solid black; /* bytt ut #000 med ønsket farge */
 }
 
+/* UNUSED */
 .button-option {
   background-color: white;
   height: 32px;
@@ -190,12 +194,14 @@ p {
   color: black;
 }
 
+/* UNUSED */
 .button-option.selected {
   background-color: blue;
   font-weight: normal;
   color: white;
 }
 
+/* UNUSED */
 .li-optionvalue {
   height: 44px;
   margin: 2px;
@@ -205,6 +211,7 @@ p {
 }
 
 /* Når knappen er prioritert */
+/* UNUSED */
 .button-optiontext.prioritized {
   background-color: blue;
   color: white;
@@ -227,7 +234,13 @@ p {
   margin-bottom: 2px;
 }
 
-.question-text,
+.question-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0px;
+}
+/* UNUSED */
 .event-text {
   text-align: center;
   font-weight: bold;
@@ -235,11 +248,13 @@ p {
   margin-bottom: 0px;
 }
 
+/* UNUSED */
 .smiley {
   width: 50px;
   height: 50px;
 }
 
+/* UNUSED */
 .page-heading {
   flex: auto;
   font-size: 2rem; /* Juster størrelsen etter behov */
@@ -249,6 +264,7 @@ p {
   /* Legg til eventuelle andre egenskaper du ønsker */
 }
 
+/* UNUSED */
 .page-content {
   flex: auto;
   font-size: 1.2rem; /* Juster størrelsen etter behov */
@@ -303,12 +319,6 @@ p {
   padding: 4px;
 }
 
-.section-rows.fixed-height {
-  height: 140px;
-  flex: 0 0 auto;
-  padding-top: 8px;
-}
-
 /* Her kommer CSS for progress bar, for testformål*/
 
 .progress-container {
@@ -345,6 +355,7 @@ progress::-moz-progress-bar {
     font-size: 14px;
   }
 
+  /* UNUSED */
   article.content {
     padding-left: 4px !important;
     padding-right: 4px !important;
@@ -370,16 +381,22 @@ progress::-moz-progress-bar {
     font-size: 1.4rem;
   }
 
-  .question-text,
+  .question-text {
+    font-size: 1.2rem;
+  }
+
+  /* UNUSED */
   .event-text {
     font-size: 1.2rem;
   }
 
+  /* UNUSED */
   textarea.comment-box {
     font-size: 1rem;
     height: 40%;
   }
 
+  /* UNUSED */
   .many-options .li-optionvalue {
     height: 30px; /* ca 30 % reduksjon fra 44px */
   }
