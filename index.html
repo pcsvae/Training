@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Grunnleggende HTML-sideoppsett" />
+    <title>Velkommen</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <!-- <header>
+      <h1>Velkommen til nettsiden</h1>
+    </header>
+     -->
+    <!-- <main></main> -->
+
+    <div class="container-main" style="border: 1px solid darkgrey">
+      <div class="section-rows logo-wrapper" style="background-color: grey">
+        <img
+          src="images/KinnarpsLogo.png"
+          alt="Default logo"
+          style="max-height: 44px; max-width: 240px"
+        />
+      </div>
+
+      <!-- Question section -->
+      <div class="section-rows fixed-height" style="border: solid 0px red">
+        <p
+          class="instructions-text"
+          style="font-weight: bold; text-align: center"
+        >
+          På en skala fra 1 til 6, hvor enig er du i at ..
+        </p>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            border: solid 0px red;
+          "
+        >
+          <div class="question-wrapper">
+            <p class="question-text">
+              Her kommer en lang spørsmålstekst. Her kommer en lang
+              spørsmålstekst. Her kommer en lang spørsmålstekst. Her kommer en
+              lang spørsmålstekst. Her kommer en lang spørsmålstekst. Her kommer
+              en lang spørsmålstekst.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Response options section -->
+      <div
+        class="section-columns many-options"
+        style="flex: 0 1 auto; height: 520px; display: flex"
+      >
+        <div
+          class="sub-section"
+          style="flex: 1; font-size: 1rem; text-align: center"
+        >
+          <ul style="list-style: none; margin: 0; padding: 0; width: 100%">
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 1</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 2</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 3</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 4</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 5</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+            <li class="li-optionrow">
+              <span class="priority-number"></span>
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+              >
+                <span>Svartekst 6</span>
+              </button>
+              <span class="invisible-teller">100</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Navigation section with navigation buttons -->
+      <div class="section-columns" style="flex: 0 1 auto">
+        <div class="sub-section" style="justify-content: flex-start">
+          <button class="button-progress">Hopp over</button>
+        </div>
+        <div
+          class="sub-section"
+          style="justify-content: center; text-align: center; width: 100%"
+        >
+          <div class="progress-container">
+            <progress id="surveyProgress" value="40" max="100"></progress>
+          </div>
+        </div>
+        <div class="sub-section" style="justify-content: flex-end">
+          <button class="button-progress">Neste</button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div
+        class="section-columns"
+        style="
+          flex: 0 1 auto;
+          border-bottom: 0px solid lightgrey;
+          font-size: 0.8rem;
+        "
+      >
+        <div class="sub-section" style="justify-content: center">
+          <a
+            href="https://excellerate.no"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Avmelding"
+          </a>
+        </div>
+        <div class="sub-section" style="justify-content: center">
+          <a
+            href="https://excellerate.no"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Personvern"
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Funksjon for å oppdatere progressbaren
+    function updateProgressBar(pageNo, totalPages) {
+      const progressBar = document.getElementById("surveyProgress");
+      const progress = (5 / 8) * 100;
+      progressBar.value = progress;
+    }
+  </script>
+</html>

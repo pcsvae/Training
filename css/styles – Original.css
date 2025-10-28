@@ -1,0 +1,402 @@
+﻿html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, Calibri, sans-serif; /* Setter global font */
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1.4;
+  background-color: lightgrey;
+  color: black;
+  font-size: 1.0rem;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+/* Sikrer at bilder går utenfor sin beholder */
+
+ul,
+ol {
+  list-style: none;
+}
+/* Fjerner punktmerking på alle lister*/
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: lightgrey;
+}
+
+p {
+  font-weight: normal;
+}
+
+.container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Justerer elementene vertikalt i midten */
+  justify-content: flex-start; /* Fordeler elementene med lik plass mellom space-between*/
+  text-align: center;
+/*  height: 90vh;*/
+  min-height: 400px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  padding: 4px;
+  border: 1px solid whitesmoke;
+  border-radius: 0px;
+  background-color: whitesmoke /*#404040;*/
+  /* Legg til bakgrunnsbilde */
+  /* background-image: url('./NTLogo.png');  Erstatt med korrekt sti */
+  /* background-repeat: no-repeat;  Hindrer at bildet gjentas */
+  /* background-position: center;  Sentrerer bildet */
+  /*  background-size: cover;  Gjør at bildet dekker hele containeren */
+}
+
+.section-rows {
+  text-align: left;
+  flex-direction: column;
+  justify-content: left; /* opprinnelig center*/
+}
+
+.section-columns {
+  text-align: center;
+  flex-direction: row;
+  align-items: flex-start; /* Øverst i beholderen*/
+  justify-content: space-between;
+}
+
+.section-rows, .section-columns {
+  display: flex;
+  width: 100%;
+  background-color: whitesmoke;
+  flex: 1 1 auto; /* 0: utvider seg ikke utover opprinnelig størrelse, 1: krymper om nødvendig, auto: h/b bestemmes av andre verdier, var opprinnelig 0 1 auto; */
+  padding: 4px;
+  padding-top: 2px;
+  border-bottom: 1px solid lightgrey;
+  border: 0px solid red;
+}
+
+.sub-section {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; /* Endret fra center til flex-start */
+  padding: 1px;
+  font-size: 0.8rem;
+  min-height: 40px;
+  border: 0px solid brown;
+}
+
+  .sub-section.infotext {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    height: auto;
+    font-size: 1.0rem;
+    vertical-align: bottom;
+    text-align: left;
+  }
+
+.button-progress {
+  background-color: lightgreen;
+  height: 40px;
+  width: 120px;
+  max-width: 160px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.0rem;
+  font-weight: bold;
+  margin: 3px;
+  color: black;
+}
+
+  .button-progress.disabled {
+    background-color: gray;
+    cursor: not-allowed;
+    visibility: hidden;
+  }
+
+.button-round {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+  padding: 0;
+  margin: 2px;
+  margin-right: 5px;
+  font-weight: bold;
+  font-size: 1.0rem;
+  overflow: hidden;
+  background-color: transparent;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+  .button-round.selected {
+    background-color: blue;
+    font-size: 1.0rem;
+    color: white;
+  }
+
+
+.button-optiontextold {
+  background-color: white;
+  height: 40px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2px;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 1.0rem;
+  transition: border 0.2s ease-in-out;
+}
+
+  .button-optiontext.selected {
+    background-color: darkblue;
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .button-optiontext:hover {
+    border: 2px solid black; /* bytt ut #000 med ønsket farge */
+  }
+
+.button-option {
+  background-color: white;
+  height: 32px;
+  width: 72px;
+  max-width: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 1.0rem;
+  color: black;
+}
+
+  .button-option.selected {
+    background-color: blue;
+    font-weight: normal;
+    color: white;
+  }
+
+.li-optionvalue {
+  height: 44px;
+  margin: 2px;
+  display: flex;
+  align-items: center; /* vertikal sentrering */
+  justify-content: center; /* horisontal (valgfritt) */
+}
+
+/* Når knappen er prioritert */
+.button-optiontext.prioritized {
+  background-color: blue;
+  color: white;
+}
+
+/* Nummer‐label som vises til venstre for knappen */
+.priority-number {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  font-weight: bold;
+  margin-right: 4px;
+  color: blue;
+  font-size: 1.4rem;
+}
+
+.instructions-text {
+  text-align: left;
+  font-size: 1.0rem;
+  margin-bottom: 2px;
+}
+
+.question-text, .event-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0px;
+}
+
+.smiley {
+  width: 50px;
+  height: 50px;
+}
+
+.page-heading {
+  flex: auto;
+  font-size: 2.0rem; /* Juster størrelsen etter behov */
+  font-weight: bold;
+  color: whitesmoke;
+  margin: 1rem 0;
+  /* Legg til eventuelle andre egenskaper du ønsker */
+}
+
+.page-content {
+  flex: auto;
+  font-size: 1.2rem; /* Juster størrelsen etter behov */
+  font-weight: normal;
+  color: whitesmoke;
+  justify-content: center;
+  margin: 1rem 0;
+  /* Legg til eventuelle andre egenskaper du ønsker */
+}
+
+
+.li-optionrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.priority-number {
+  width: 10%;
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: blue;
+  font-size: 1.2rem;
+}
+
+.invisible-teller {
+  width: 10%;
+  min-width: 24px;
+  visibility: hidden;
+}
+
+.button-optiontext {
+  flex: 1 1 80%; /* hovedjusteringen */
+  max-width: 80%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
+  height: 40px;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center; /* horisontalt */
+  align-items: center; /* vertikalt */
+  height: 50px;
+  padding:4px;
+}
+
+.section-rows.fixed-height {
+  height: 140px;
+  flex: 0 0 auto;
+  padding-top: 8px;
+}
+
+/* Her kommer CSS for progress bar, for testformål*/
+
+.progress-container {
+  width: 100%;
+  margin: 2px 0;
+}
+
+progress {
+  width: 100%;
+  height: 10px;
+  appearance: none;
+  border: solid 1px darkgrey;
+}
+
+  progress::-webkit-progress-bar {
+    background-color: whitesmoke;
+    border-radius: 2px;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: darkgreen;
+    border-radius: 2px;
+  }
+
+  progress::-moz-progress-bar {
+    background-color: darkgreen;
+    border-radius: 2px;
+  }
+
+
+/* Sikrer bedre responsivitet på mindre skjermer, opprinnelig 768px */
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  article.content {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .container-main {
+    padding: 2px;
+    max-width: 100%;
+    height: 90vh;
+  }
+
+  .sub-section {
+    flex: 1 1 100%;
+    padding: 4px;
+  }
+
+  .button-progress,
+  .button-optiontext {
+    font-size: 1rem;
+  }
+
+  .priority-number {
+    font-size: 1.4rem;
+  }
+
+  .question-text,
+  .event-text {
+    font-size: 1.2rem;
+  }
+
+  textarea.comment-box {
+    font-size: 1rem;
+    height:40%;
+  }
+  
+  .many-options .li-optionvalue {
+    height: 30px; /* ca 30 % reduksjon fra 44px */
+  }
+
+  .many-options .button-optiontext {
+    height: 30px !important;
+    font-size: 0.9rem;
+  }
+  .section-rows.fixed-height {
+    height: 100px; /* Juster etter behov */
+    padding-top: 6px;
+  }
+
+  .button-progress {
+    height: 32px;
+    width: 86px;
+    max-width: 86px;
+  }
+
+}

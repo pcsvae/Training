@@ -1,0 +1,243 @@
+﻿
+<script>
+   // Funksjon for å oppdatere progressbaren
+   function updateProgressBar(pageNo, totalPages) {
+     const progressBar = document.getElementById('surveyProgress');
+     const progress = (pageNo / (totalPages + 1)) * 100;
+     progressBar.value = progress;
+   }
+</script>
+
+
+<div class="container-main" style="border:1px solid darkgrey">
+
+   <div class="section-rows logo-wrapper" style="background-color:@BrandColor">
+      @if (string.IsNullOrEmpty(_logoUrl))
+      {
+         <p>Laster logo …</p>
+      }
+      else
+      {
+         <img src="@_logoUrl" alt="Default logo" style="max-height:44px; max-width:240px;" />
+      }
+   </div>
+
+   <!-- Question section -->
+   <div class="section-rows fixed-height" style="border:solid 0px red">
+      @switch (PageState)
+      {
+         case "Intro":
+            <div style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%;">
+               <p class="question-text">@EventDescription</p>
+            </div>
+            break;
+
+         case "Question":
+            <p class="instructions-text" style="font-weight:bold; text-align:center">@currentQ?.ResponseInstructions</p>
+            <div style="display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; border:solid 0px red">
+               <div class="question-wrapper" @key="currentQ?.QuestionId">
+                  <p class="question-text">@currentQ?.QuestionText</p>
+               </div>
+               @* <p class="question-text">@currentQ?.QuestionText</p> *@
+            </div>
+            break;
+
+         case "Comment":
+            <div style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; height: 100%;">
+               <p class="question-text">@CommentLabel</p>
+            </div>
+            break;
+
+         case "Last":
+            <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; height: 100%;">
+               @if (ResponseStatusCode == 301)
+               {
+                  <p class="question-text">
+                     <br />
+                     @(LanguageCode == "no"
+                                 ? "Dine svar er nå sendt inn og lagret. Takk for at du ga oss din tilbakemelding!"
+                                 : "Your responses have been submitted and saved. Thank you for your feedback!")
+                  </p>
+                  }
+               else
+               {
+                  <p class="question-text">
+                     @(LanguageCode == "no"
+                                 ? "Undersøkelsen er allerede besvart eller det oppstod en feil ved innlasting av spørsmål!"
+                                 : "The survey has already been completed, or an error occurred while loading the questions!")
+                  </p>
+               }
+            </div>
+            break;
+
+         default:
+            <p class="question-text">Saving  ......</p>
+            break;
+      }
+   </div>
+
+   <!-- Response options section -->
+   <div class="section-columns @(opts.Count > 6 ? "many-options" : "")" style="flex: 0 1 auto; height:520px; display: flex;">
+      @switch (PageState)
+      {
+         case "Intro":
+            <div class="sub-section" style="flex: 1; font-size: 1.0rem; display: flex; justify-content: center; align-items: center;">
+               <p style="text-align:center">@MSDescLong</p>
+            </div>
+            break;
+         case "Question":
+            <div class="sub-section" style="flex: 1; font-size: 1.0rem; text-align: center;">
+               <ul style="list-style: none; margin: 0; padding: 0; width: 100%;">
+                  @for (int idx = 0; idx < opts.Count; idx++)
+                  {
+                     var opt = opts[idx];
+                     var btnNumber = opt.Value;
+                     var isSelected = SelectedOption == btnNumber;
+                     var buttonColor = isSelected ? "rgb(0, 0, 200)" : opt.Color;
+                     var priIndex = _priSelections.IndexOf(opt.Value); // -1 hvis ikke valgt
+
+                     <li class="li-optionrow">
+                        <span class="priority-number">
+                           @((Questions[CurrentQuestionIndex].QuestionType == "PRI" && priIndex >= 0) ? (priIndex + 1).ToString() : "")
+                        </span>
+
+                        @if (Questions[CurrentQuestionIndex].QuestionType == "PRI")
+                        {
+                           <button class="button-optiontext @(OptionSelected[idx] ? "prioritized" : "")"
+                                   @onclick="() => OnPriOptionClicked(opt.Value)">
+                              <span>@opt.OptionText</span>
+                           </button>
+                        }
+                        else
+                        {
+                           <button class="button-optiontext @(isSelected ? "selected" : "")"
+                                   style="background-color:@buttonColor"
+                                   @onclick="() => {
+                                   SelectedOption = btnNumber;
+                                   SelectedButtonIndex = btnNumber;
+                                }">
+                             <span>@opt.OptionText</span>
+                          </button>
+                     }
+
+                     <span class="invisible-teller">@((OptionSelected[idx]) ? "100" : "")</span>
+                  </li>
+            }
+         </ul>
+      </div>
+      break;
+            case "Comment":
+         <textarea id="commentBox"
+                   class="comment-box"
+                   @bind="Comment"
+                   placeholder="@(LanguageCode == "no" ? "Skriv din kommentar her…" : "Write your comment here…")"
+                   style="flex: 1; height: 90%; width: 100%; padding: 0.4rem; font-size: 1rem; resize: vertical; background-color: white;">
+           </textarea>
+
+         break;
+      case "Last":
+         <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div style="width: 100%; text-align: center;">
+               The survey is powered by GAP Vision.<br /><br />
+               Click <a rel="noopener noreferrer" href="https://www.gapvision.no">here</a> for more information.
+            </div>
+            <div style="width: 100%; text-align: center;">
+               <img src="GV_logo.png" alt="GAP Vision logo" style="max-height:44px; max-width:180px;" />
+            </div>
+            <div>
+               @if (!string.IsNullOrWhiteSpace(ReviewURL))
+               {
+                  <a href="@ReviewURL"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     style="margin-top: 12px;">
+                     <img src="images/GoogleReviewButton2.png"
+                          alt="Klikk her for å vurdere oss på Google også!"
+                          style="max-width:280px; height: auto; margin-top: 100px; border-radius: 1px;" />
+                  </a>
+               }
+
+            </div>
+         </div>
+         break;
+      default:
+         <text></text>
+         break;
+      }
+   </div>
+
+   <!-- Navigation section with navigation buttons -->
+   <div class="section-columns" style="flex: 0 1 auto">
+      @if (PageState == "Intro" || PageState == "Question" || PageState == "Comment")
+      {
+         @*          currentPage = CurrentQuestionIndex + 1;
+ *@         bool ShowNaOption = false;
+         if (PageState == "Question")
+         {
+            ShowNaOption = Questions[CurrentQuestionIndex].NaOption;
+         }
+         if (LanguageCode == "no")
+         {
+            buttonText = PageState == "Question" ? "Neste"
+            : PageState == "Comment" ? "Send"
+            : "Start";
+         }
+         else
+         {
+            buttonText = PageState == "Question" ? "Next"
+            : PageState == "Comment" ? "Send"
+            : "Start";
+         }
+         <div class="sub-section" style="justify-content: flex-start;">
+            @if (ShowNaOption)
+            {
+               <button class="button-progress" @onclick="() => ProcessPage(false)">
+                  @(LanguageCode == "no" ? "Hopp over" : "Skip")
+               </button>
+            }
+         </div>
+         <div class="sub-section" style="justify-content: center; text-align: center; width: 100%;">
+            @*                          <p style="margin: 0; text-align: center; font-weight:bold">
+               @if (LanguageCode == "no")
+               {
+                  @:Side<br />@currentPage av @((Questions.Count) + 1)
+               }
+               else
+               {
+                  @:Page<br />@currentPage of @((Questions.Count) + 1)
+               }
+            </p> *@
+            <!-- Progress bar container -->
+            <div class="progress-container">
+               <progress id="surveyProgress" value="0" max="100"></progress>
+            </div>
+
+         </div>
+         <div class="sub-section" style="justify-content: flex-end;">
+            <button class="button-progress @((IsSubmitDisabled && Questions[CurrentQuestionIndex].QuestionType != "PRI") ? "disabled" : "")"
+                    @onclick="() => ProcessPage(true)"
+                    disabled="@((IsSubmitDisabled && Questions[CurrentQuestionIndex].QuestionType != "PRI") ? "disabled" : null)">
+               @buttonText
+            </button>
+         </div>
+      }
+   </div>
+
+
+   <!-- Footer -->
+   <div class="section-columns" style="flex:0 1 auto;border-bottom:0px solid lightgrey; font-size:0.8rem">
+      @if (SurveyType != 20)
+      {
+         <div class="sub-section" style="justify-content:center;">
+            <a href="@($"https://www.gvgo.no/oo/{responseToken}")" target="_blank" rel="noopener noreferrer">
+               @(LanguageCode == "no" ? "Avmelding" : "Unsubscribe")
+            </a>
+         </div>
+      }
+      <div class="sub-section" style="justify-content:center;">
+         <a href="@PPURL" target="_blank" rel="noopener noreferrer">
+            @(LanguageCode == "no" ? "Personvern" : "Privacy Policy")
+         </a>
+      </div>
+   </div>
+</div>
