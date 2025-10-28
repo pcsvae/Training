@@ -78,7 +78,7 @@ p {
 }
 
 .section-rows.fixed-height {
-  height: 140px;
+  height: 156px;
   flex: 0 0 auto;
   padding-top: 8px;
 }
@@ -268,7 +268,7 @@ progress::-moz-progress-bar {
     font-size: 0.9rem;
   }
   .section-rows.fixed-height {
-    height: 100px; /* Juster etter behov */
+    height: 110px; /* Juster etter behov */
     padding-top: 6px;
   }
 
