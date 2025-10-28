@@ -319,6 +319,12 @@ p {
   padding: 4px;
 }
 
+.question-wrapper {
+  max-height: 100%;
+  overflow-y: auto;
+  width: 100%;
+}
+
 /* Her kommer CSS for progress bar, for testformål*/
 
 .progress-container {
