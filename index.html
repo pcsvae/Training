@@ -127,7 +127,9 @@
       <!-- Navigation section with navigation buttons -->
       <div class="section-columns" style="flex: 0 1 auto">
         <div class="sub-section" style="justify-content: flex-start">
-          <button class="button-progress">Hopp over</button>
+          <button id="skip" class="button-progress" onclick="myFunction()">
+            Hopp over
+          </button>
         </div>
         <div
           class="sub-section"
@@ -179,6 +181,11 @@
       const progressBar = document.getElementById("surveyProgress");
       const progress = (5 / 8) * 100;
       progressBar.value = progress;
+    }
+  </script>
+  <script>
+    function myFunction() {
+      document.getElementById("skip").style.backgroundColor = "red";
     }
   </script>
 </html>
