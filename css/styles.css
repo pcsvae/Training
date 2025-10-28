@@ -4,7 +4,6 @@
 
 body {
   font-family: Arial, Calibri, sans-serif; /* Setter global font */
-  font-size: 1.2rem;
   font-weight: normal;
   line-height: 1.4;
   background-color: lightgrey;
@@ -74,7 +73,6 @@ p {
   padding: 4px;
   padding-top: 2px;
   border-bottom: 1px solid lightgrey;
-  border: 0px solid red;
 }
 
 .section-rows.fixed-height {
@@ -120,7 +118,8 @@ p {
 /* Nummer‐label som vises til venstre for knappen */
 .priority-number {
   display: inline-block;
-  width: 24px;
+  width: 10%;
+  min-width: 24px;
   text-align: center;
   font-weight: bold;
   margin-right: 4px;
@@ -152,15 +151,6 @@ p {
   margin: 6px 0;
 }
 
-.priority-number {
-  width: 10%;
-  min-width: 24px;
-  text-align: center;
-  font-weight: bold;
-  color: blue;
-  font-size: 1.2rem;
-}
-
 .invisible-teller {
   width: 10%;
   min-width: 24px;
@@ -188,17 +178,16 @@ p {
   padding: 4px;
 }
 
-.question-wrapper {
+.scroll-container {
   width: 100%;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: 0px;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
 
-.question-wrapper .question-text {
+.scroll-container > * {
   width: 100%;
   margin: 0;
 }
