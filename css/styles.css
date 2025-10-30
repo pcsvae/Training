@@ -248,6 +248,17 @@ progress::-moz-progress-bar {
     font-size: 1.4rem;
   }
 
+/* Fade-out effect for sections on Next click */
+.section-rows.fixed-height,
+.section-columns.many-options {
+  transition: opacity 0.5s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
   .question-text {
     font-size: 1.2rem;
   }

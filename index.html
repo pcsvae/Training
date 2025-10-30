@@ -180,7 +180,7 @@
           </div>
         </div>
         <div class="sub-section" style="justify-content: flex-end">
-          <button class="button-progress">Neste</button>
+          <button id="nextButton" class="button-progress">Neste</button>
         </div>
       </div>
 
@@ -227,5 +227,20 @@
     function myFunction() {
       document.getElementById("skip").style.backgroundColor = "red";
     }
+  </script>
+  <script>
+    // Fade out question and response sections when clicking "Neste"
+    document.addEventListener("DOMContentLoaded", function () {
+      const nextBtn = document.getElementById("nextButton");
+      const fadeTargets = document.querySelectorAll(
+        ".section-rows.fixed-height, .section-columns.many-options"
+      );
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          fadeTargets.forEach((el) => el.classList.add("fade-out"));
+        });
+      }
+    });
   </script>
 </html>
