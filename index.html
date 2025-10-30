@@ -230,17 +230,25 @@
   </script>
   <script>
     // Fade out question and response sections when clicking "Neste"
-    document.addEventListener("DOMContentLoaded", function () {
-      const nextBtn = document.getElementById("nextButton");
-      const fadeTargets = document.querySelectorAll(
-        ".section-rows.fixed-height, .section-columns.many-options"
-      );
+    (function () {
+      function attachFadeHandler() {
+        const nextBtn = document.getElementById("nextButton");
+        const fadeTargets = document.querySelectorAll(
+          ".section-rows.fixed-height, .section-columns.many-options"
+        );
 
-      if (nextBtn) {
-        nextBtn.addEventListener("click", function () {
-          fadeTargets.forEach((el) => el.classList.add("fade-out"));
-        });
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function () {
+            fadeTargets.forEach((el) => el.classList.add("fade-out"));
+          });
+        }
       }
-    });
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", attachFadeHandler);
+      } else {
+        attachFadeHandler();
+      }
+    })();
   </script>
 </html>
