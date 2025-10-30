@@ -259,6 +259,25 @@ progress::-moz-progress-bar {
   pointer-events: none;
 }
 
+/* Lokal stil for "Hopp over"-knappens aktive tilstand (flyttet fra inline) */
+.active-skip { background-color: #c82333 !important; color: #fff !important; }
+/* Sikre tydelig fokus og pekere */
+.button-optiontext { cursor: pointer; }
+
+/* Fade-out overgang for spørsmål/response-seksjoner (global) */
+.section-rows.fixed-height,
+.section-columns.many-options {
+  transition: opacity 400ms ease, transform 400ms ease;
+  will-change: opacity, transform;
+}
+
+/* Legg på denne for å starte fade-out */
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+  pointer-events: none;
+}
+
   .question-text {
     font-size: 1.2rem;
   }
