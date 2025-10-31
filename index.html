@@ -25,12 +25,13 @@
       <!-- Question section -->
       <div class="section-rows fixed-height" style="border: solid 0px red">
         <p class="instructions-text">
-          Hvor enig er du i at (klikk "Hopp over" hvis ikke opplevd)...
+          Hvor enig er du i at (klikk "Hopp over" hvis ikke opplevd) ...
         </p>
         <div class="scroll-container question-wrapper">
           <p class="question-text">
-            Hvis det skulle være aktuelt, hvor sannsynlig er det at du vil anbefale denne virksomheten til
-            familie, venner og kjente? Det er hyggelig om du gjør det altså .....
+            Hvis det skulle være aktuelt, hvor sannsynlig er det at du vil
+            anbefale denne virksomheten til familie, venner og kjente? Det er
+            hyggelig om du gjør det altså .....
           </p>
         </div>
       </div>
@@ -52,7 +53,11 @@
           <ul style="list-style: none; margin: 0; padding: 0; width: 100%">
             <li class="li-optionrow">
               <span class="priority-number"></span>
-              <button class="button-optiontext selected" style="background-color: darkgreen" type="button">
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+                type="button"
+              >
                 <span>Svartekst 0</span>
               </button>
               <span class="invisible-teller">100</span>
@@ -149,7 +154,11 @@
             </li>
             <li class="li-optionrow">
               <span class="priority-number"></span>
-              <button class="button-optiontext selected" style="background-color: darkgreen" type="button">
+              <button
+                class="button-optiontext selected"
+                style="background-color: darkgreen"
+                type="button"
+              >
                 <span>Svartekst 10</span>
               </button>
               <span class="invisible-teller">100</span>
@@ -161,14 +170,29 @@
       <!-- Navigation section with navigation buttons -->
       <div class="section-columns" style="flex: 0 1 auto">
         <div class="sub-section" style="justify-content: flex-start">
-          <button id="skip" class="button-progress" type="button" aria-pressed="false" aria-label="Hopp over spørsmål">Hopp over</button>
+          <button
+            id="skip"
+            class="button-progress"
+            type="button"
+            aria-pressed="false"
+            aria-label="Hopp over spørsmål"
+          >
+            Hopp over
+          </button>
         </div>
         <div
           class="sub-section"
           style="justify-content: center; text-align: center; width: 100%"
         >
           <div class="progress-container">
-            <progress id="surveyProgress" value="0" max="100" data-page="3" data-total="8" aria-label="Spørreundersøkelses fremdrift"></progress>
+            <progress
+              id="surveyProgress"
+              value="0"
+              max="100"
+              data-page="3"
+              data-total="8"
+              aria-label="Spørreundersøkelses fremdrift"
+            ></progress>
           </div>
         </div>
         <div class="sub-section" style="justify-content: flex-end">
@@ -209,39 +233,40 @@
 
   <script>
     // Init: tilgjengelighet, knapp-typer, toggle for skip-knapp og progress-logikk
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener("DOMContentLoaded", function () {
       // Sikre at alle svar-knapper er type=button og har aria-label
-      document.querySelectorAll('.button-optiontext').forEach(function (btn) {
-        if (!btn.hasAttribute('type')) btn.setAttribute('type', 'button');
-        const text = (btn.textContent || btn.innerText || '').trim();
-        if (text && !btn.hasAttribute('aria-label')) btn.setAttribute('aria-label', text);
-        if (!btn.hasAttribute('tabindex')) btn.setAttribute('tabindex', '0');
+      document.querySelectorAll(".button-optiontext").forEach(function (btn) {
+        if (!btn.hasAttribute("type")) btn.setAttribute("type", "button");
+        const text = (btn.textContent || btn.innerText || "").trim();
+        if (text && !btn.hasAttribute("aria-label"))
+          btn.setAttribute("aria-label", text);
+        if (!btn.hasAttribute("tabindex")) btn.setAttribute("tabindex", "0");
       });
 
       // Toggle-funksjon for "Hopp over"
-      const skipBtn = document.getElementById('skip');
+      const skipBtn = document.getElementById("skip");
       function toggleSkip() {
-        const pressed = skipBtn.getAttribute('aria-pressed') === 'true';
-        skipBtn.setAttribute('aria-pressed', String(!pressed));
-        skipBtn.classList.toggle('active-skip', !pressed);
+        const pressed = skipBtn.getAttribute("aria-pressed") === "true";
+        skipBtn.setAttribute("aria-pressed", String(!pressed));
+        skipBtn.classList.toggle("active-skip", !pressed);
       }
-      skipBtn.addEventListener('click', toggleSkip);
+      skipBtn.addEventListener("click", toggleSkip);
 
       // Initialiser progressbaren fra data-attributter
-      const prog = document.getElementById('surveyProgress');
-      const pageNo = parseInt(prog.getAttribute('data-page')) || 0;
-      const total = parseInt(prog.getAttribute('data-total')) || 1;
+      const prog = document.getElementById("surveyProgress");
+      const pageNo = parseInt(prog.getAttribute("data-page")) || 0;
+      const total = parseInt(prog.getAttribute("data-total")) || 1;
       updateProgressBar(pageNo, total);
     });
 
     function updateProgressBar(pageNo, totalPages) {
-      const progressBar = document.getElementById('surveyProgress');
+      const progressBar = document.getElementById("surveyProgress");
       if (!progressBar) return;
       const fraction = Math.max(0, Math.min(1, pageNo / totalPages));
       const percent = Math.round(fraction * 100);
       progressBar.value = percent;
-      progressBar.setAttribute('aria-valuenow', String(percent));
-      progressBar.setAttribute('title', percent + '% fullført');
+      progressBar.setAttribute("aria-valuenow", String(percent));
+      progressBar.setAttribute("title", percent + "% fullført");
     }
   </script>
   <script>
@@ -256,13 +281,13 @@
         if (nextBtn) {
           nextBtn.addEventListener("click", function () {
             // Oppdater progress først
-            const prog = document.getElementById('surveyProgress');
+            const prog = document.getElementById("surveyProgress");
             if (prog) {
-              const pageNo = parseInt(prog.getAttribute('data-page')) || 0;
-              const total = parseInt(prog.getAttribute('data-total')) || 1;
+              const pageNo = parseInt(prog.getAttribute("data-page")) || 0;
+              const total = parseInt(prog.getAttribute("data-total")) || 1;
               if (pageNo < total) {
                 const nextPage = pageNo + 1;
-                prog.setAttribute('data-page', String(nextPage));
+                prog.setAttribute("data-page", String(nextPage));
                 updateProgressBar(nextPage, total);
               }
             }
@@ -271,12 +296,12 @@
             fadeTargets.forEach((el) => {
               el.classList.add("fade-out");
               const onEnd = function (ev) {
-                if (ev.propertyName === 'opacity') {
-                  el.style.display = 'none';
-                  el.removeEventListener('transitionend', onEnd);
+                if (ev.propertyName === "opacity") {
+                  el.style.display = "none";
+                  el.removeEventListener("transitionend", onEnd);
                 }
               };
-              el.addEventListener('transitionend', onEnd);
+              el.addEventListener("transitionend", onEnd);
             });
           });
         }
